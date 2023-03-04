@@ -8,11 +8,13 @@ import 'package:flutter_application_1/widgets/drawer.dart';
 import 'package:flutter_application_1/models/items.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
+import '../models/cart.dart';
 import '../widgets/item_widget.dart';
 import '../widgets/home_widgets/KartHeader.dart';
 import '../widgets/home_widgets/ModelList.dart';
 import '../firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   @override
@@ -49,6 +51,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _cart = CartModel();
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: Theme.of(context).canvasColor,

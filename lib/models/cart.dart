@@ -23,9 +23,12 @@ class CartModel {
 
   void add(Item item) {
     _list.add(item.id);
+
   }
+  
 
   void remove(Item item) {
     _list.remove(item.id);
   }
 }
+

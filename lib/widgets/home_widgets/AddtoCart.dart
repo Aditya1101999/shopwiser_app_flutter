@@ -23,12 +23,12 @@ class _AddtoCartState extends State<AddtoCart> {
     bool isInCart = _cart.items.contains(widget.Catalog) ?? false;
     return ElevatedButton(
         onPressed: (() {
-          if(!isInCart){
-          isInCart = isInCart.toggle();
-          final _catalog = Model();
-          _cart.model = _catalog;
-          _cart.add(widget.Catalog);
-          setState(() {});
+          if (!isInCart) {
+            isInCart = isInCart.toggle();
+            final _catalog = Model();
+            _cart.model = _catalog;
+            _cart.add(widget.Catalog);
+            setState(() {});
           }
         }),
         style: ButtonStyle(
@@ -37,6 +37,7 @@ class _AddtoCartState extends State<AddtoCart> {
                 // ignore: deprecated_member_use
                 MaterialStateProperty.all(context.theme.buttonColor),
             shape: MaterialStateProperty.all(StadiumBorder())),
-        child: isInCart ? Icon(Icons.done) : Icon(CupertinoIcons.cart_badge_plus));
+        child:
+            isInCart ? Icon(Icons.done) : Icon(CupertinoIcons.cart_badge_plus));
   }
 }

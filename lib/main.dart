@@ -1,15 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/items.dart';
 import 'package:flutter_application_1/pages/cart_page.dart';
-import 'package:flutter_application_1/pages/home_detailpage.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'pages/home_page.dart';
 import 'pages/login-page.dart';
-import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
