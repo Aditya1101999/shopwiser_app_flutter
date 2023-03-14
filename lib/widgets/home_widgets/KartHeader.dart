@@ -11,7 +11,7 @@ class KartHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // ignore: deprecated_member_use
-        "Kart".text.xl5.bold.color(context.theme.accentColor).make(),
+        "ShopWiser".text.xl5.bold.color(context.theme.accentColor).make(),
         "What's New. . .".text.xl2.make(),
       ],
     );
