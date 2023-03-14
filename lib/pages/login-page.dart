@@ -121,12 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                                   BorderRadius.circular(changeButton ? 50 : 8)),
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text(
-                        "Don't have an account? Sign up",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 40),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -153,13 +148,13 @@ class _LoginPageState extends State<LoginPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Already have an account? "),
+                          Text("Don't have an account? "),
                           InkWell(
                             onTap: () {
                               Navigator.pushNamed(context, MyRoutes.loginRoute);
                             },
                             child: Text(
-                              "Login",
+                              "Sign Up",
                               style: TextStyle(
                                 color: Colors.blue,
                                 fontWeight: FontWeight.bold,
