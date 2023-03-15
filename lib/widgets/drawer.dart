@@ -7,7 +7,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imgUrl =
-        "https://www.bmu.edu.in/wp-content/uploads/2019/01/rishi_asthana.jpg";
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
     return Drawer(
       child: Container(
         color: Colors.pink,
@@ -19,13 +19,19 @@ class MyDrawer extends StatelessWidget {
                 child: UserAccountsDrawerHeader(
                     margin: EdgeInsets.zero,
                     decoration: BoxDecoration(color: Colors.black),
-                    accountName: Text("Dr.Rishi Asthana",style: TextStyle(fontSize: 20),),
-                    accountEmail: Text("r_asthana@gmail.com",style: TextStyle(fontSize: 15),),
+                    accountName: Text(
+                      "John Doe",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    accountEmail: Text(
+                      "john@gmail.com",
+                      style: TextStyle(fontSize: 15),
+                    ),
                     currentAccountPicture: CircleAvatar(
                       backgroundImage: NetworkImage(imgUrl),
                       maxRadius: 10,
                     ))),
-                    SizedBox(height: 30),
+            SizedBox(height: 30),
             ListTile(
               leading: Icon(
                 CupertinoIcons.home,
