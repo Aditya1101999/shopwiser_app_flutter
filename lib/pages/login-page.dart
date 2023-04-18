@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,6 +16,8 @@ class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   moveToHome(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
@@ -27,6 +30,55 @@ class _LoginPageState extends State<LoginPage> {
         changeButton = false;
       });
     }
+  }
+
+  showErrorDialog(BuildContext context, String error){
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Sign In failed"),
+      content: Text(error),
+      actions: [
+        TextButton(
+          child: const Text("OK"),
+        onPressed: () {
+            Navigator.of(context).pop();
+        },
+        ),
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showLoaderDialog(BuildContext context){
+    AlertDialog alert = AlertDialog(
+      content: Row(
+        children: [
+          const CircularProgressIndicator(),
+          Container(margin: const EdgeInsets.only(left: 7),child:const Text("Loading..." )),
+        ],),
+    );
+
+    showDialog(barrierDismissible: false,
+      context:context,
+      builder:(BuildContext context){
+        return alert;
+      },
+    );
+  }
+
+   Future<User> _signIn() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User user = (await auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text)).user!;
+    return user;
   }
 
   @override
@@ -67,13 +119,14 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       TextFormField(
+                          controller: _emailController,
                           decoration: InputDecoration(
-                            hintText: "Enter Username",
-                            labelText: "Username",
+                            hintText: "Enter Email",
+                            labelText: "Email",
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Username can't be empty";
+                              return "Email can't be empty";
                             }
                             return null;
                           },
@@ -82,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                             setState(() {});
                           }),
                       TextFormField(
+                          controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: "Enter Password",
@@ -99,7 +153,15 @@ class _LoginPageState extends State<LoginPage> {
                         height: 50.0,
                       ),
                       InkWell(
-                        onTap: (() => moveToHome(context)),
+                        onTap: (() {
+                          showLoaderDialog(context);
+                          _signIn().then((User user){
+                              Navigator.pushNamed(context, MyRoutes.homeRoute);
+                            }).catchError((e){
+                              Navigator.of(context).pop();
+                              showErrorDialog(context, e.message);
+                          });
+                        }),
                         child: AnimatedContainer(
                           duration: Duration(seconds: 1),
                           width: changeButton ? 50 : 150,
