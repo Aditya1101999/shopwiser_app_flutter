@@ -28,6 +28,7 @@ class Item {
   final num displaySize;
   final String diskType;
   final num diskSpace;
+  final num rating;
 
   Item({
     required this.id,
@@ -40,7 +41,8 @@ class Item {
     required this.graphicsCard,
     required this.displaySize,
     required this.diskType,
-    required this.diskSpace
+    required this.diskSpace,
+    required this.rating
   });
 
   Item copyWith({
@@ -54,7 +56,8 @@ class Item {
     required String graphicsCard,
     required num displaySize,
     required String diskType,
-    required num diskSpace
+    required num diskSpace,
+    required num rating
   }) {
     return Item(
       id: id,
@@ -67,7 +70,8 @@ class Item {
       graphicsCard: graphicsCard,
       displaySize: displaySize,
       diskType: diskType,
-      diskSpace: diskSpace
+      diskSpace: diskSpace,
+      rating: rating
     );
   }
 
@@ -83,7 +87,8 @@ class Item {
       'graphicsCard': graphicsCard,
       'displaySize': displaySize,
       'diskType': diskType,
-      'diskSpace': diskSpace
+      'diskSpace': diskSpace,
+      'rating': rating
     };
   }
 
@@ -99,7 +104,8 @@ class Item {
       graphicsCard: map['graphics_card'] as String,
       displaySize: map['display_size'] as num,
       diskType: map['disk_type'] as String,
-      diskSpace: map['disk_space'] as num
+      diskSpace: map['disk_space'] as num,
+      rating: map['ratings_5max'] as num
     );
   }
 
@@ -111,7 +117,7 @@ class Item {
   String toString() {
     return 'Item(id: $id, name: $name, desc: $desc, price: $price, color: $color,'
     'image: $image, processor: $processor, graphicsCard: $graphicsCard, displaySize: $displaySize,'
-    'diskType: $diskType, diskSpace: $diskSpace)';
+    'diskType: $diskType, diskSpace: $diskSpace, rating: $rating)';
   }
 
   @override
@@ -129,7 +135,8 @@ class Item {
         o.processor == processor &&
         o.displaySize == displaySize &&
         o.diskType == diskType &&
-        o.diskSpace == diskSpace;
+        o.diskSpace == diskSpace &&
+        o.rating == rating;
   }
 
   @override
@@ -144,7 +151,8 @@ class Item {
         processor.hashCode ^
         displaySize.hashCode ^
         diskType.hashCode ^
-        diskSpace.hashCode;
+        diskSpace.hashCode ^
+        rating.hashCode;
   }
 
   elementAt(int index) {}

@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_application_1/pages/home_detailpage.dart';
 import 'package:flutter_application_1/widgets/home_widgets/ItemImage.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -57,7 +60,16 @@ class catalogItem extends StatelessWidget {
           children: [
             // ignore: deprecated_member_use
             catalog.name.text.xl.color(context.theme.accentColor).bold.make(),
-            catalog.desc.text.textStyle(context.captionStyle).make(),
+            RatingBarIndicator(
+              rating: catalog.rating.toDouble(),
+              itemBuilder: (context, index) => Icon(
+                Icons.star,
+                color: Colors.amber,
+              ),
+              itemCount: 5,
+              itemSize: 25.0,
+              direction: Axis.horizontal,
+            ),
             10.heightBox,
             ButtonBar(
               alignment: MainAxisAlignment.spaceBetween,
