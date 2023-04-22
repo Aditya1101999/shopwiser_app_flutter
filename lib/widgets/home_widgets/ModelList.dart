@@ -59,7 +59,7 @@ class catalogItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // ignore: deprecated_member_use
-            catalog.name.text.xl.color(context.theme.accentColor).bold.make(),
+            catalog.name.text.lg.color(context.theme.accentColor).bold.make(),
             RatingBarIndicator(
               rating: catalog.rating.toDouble(),
               itemBuilder: (context, index) => Icon(

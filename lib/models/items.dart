@@ -95,7 +95,7 @@ class Item {
   factory Item.fromMap(Map<dynamic, dynamic> map) {
     return Item(
       id: map['ID'] as int,
-      name: map['laptop_name'] as String,
+      name: (map["brand"] as String) + " " + (map['laptop_name'] as String),
       desc: "NONE",
       price: map['discount_price'] as num,
       color: "NONE",

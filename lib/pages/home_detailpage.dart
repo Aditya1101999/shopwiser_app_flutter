@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_application_1/widgets/home_widgets/AddtoCart.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -50,10 +51,16 @@ class HomeDetailPage extends StatelessWidget {
                           .color(context.accentColor)
                           .bold
                           .make(),
-                      catalog!.desc.text
-                          .textStyle(context.captionStyle)
-                          .xl
-                          .make(),
+                    RatingBarIndicator(
+                      rating: catalog!.rating.toDouble(),
+                      itemBuilder: (context, index) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 25.0,
+                      direction: Axis.horizontal,
+                    ),
                       10.heightBox,
                       "Qui enim reprehenderit dolore elit nisi mollit magna tempor sint aliqua tempor. Aliquip irure cillum culpa labore reprehenderit ullamco nisi. Ipsum quis ut tempor ut ipsum velit exercitation mollit ad. Sint dolor sit nisi ex. Veniam sint labore ea ipsum tempor veniam id Lorem est aliquip duis voluptate est. Culpa officia elit elit quis tempor exercitation cupidatat ad. Sint aute nulla ullamco non velit enim dolor ullamco irure amet ut fugiat enim."
                           .text
