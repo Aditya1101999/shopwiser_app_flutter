@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
           key: _formKey,
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 0.0,
               ),
               Image.asset(
@@ -99,17 +99,17 @@ class _LoginPageState extends State<LoginPage> {
                 height: 300,
                 width: 1500,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50.0,
               ),
-              Text(
-                "Hey $name !",
+              const Text(
+                "Hey!",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
               Padding(
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       TextFormField(
                           controller: _emailController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "Enter Email",
                             labelText: "Email",
                           ),
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextFormField(
                           controller: _passwordController,
                           obscureText: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "Enter Password",
                             labelText: "Password",
                           ),
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
                             return null;
                           }),
-                      SizedBox(
+                      const SizedBox(
                         height: 50.0,
                       ),
                       InkWell(
@@ -163,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                           });
                         }),
                         child: AnimatedContainer(
-                          duration: Duration(seconds: 1),
+                          duration: const Duration(seconds: 1),
                           width: changeButton ? 50 : 150,
                           height: 40,
                           alignment: Alignment.center,
@@ -183,24 +183,24 @@ class _LoginPageState extends State<LoginPage> {
                                   BorderRadius.circular(changeButton ? 50 : 8)),
                         ),
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
                         ),
-                        child: Text(
+                        child: const Text(
                           "Sign up with Google",
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
                         ),
-                        child: Text(
+                        child: const Text(
                           "Sign up with Facebook",
                           style: TextStyle(fontSize: 16),
                         ),
@@ -210,12 +210,12 @@ class _LoginPageState extends State<LoginPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Don't have an account? "),
+                          const Text("Don't have an account? "),
                           InkWell(
                             onTap: () {
                               Navigator.pushNamed(context, MyRoutes.loginRoute);
                             },
-                            child: Text(
+                            child: const Text(
                               "Sign Up",
                               style: TextStyle(
                                 color: Colors.blue,
