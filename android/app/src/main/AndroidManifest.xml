@@ -21,7 +21,7 @@
               /> -->
               <meta-data
   android:name="com.google.firebase.messaging.default_notification_icon"
-  android:resource="@drawable/ic_stat_icon" />
+  android:resource="@drawable/icon" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
