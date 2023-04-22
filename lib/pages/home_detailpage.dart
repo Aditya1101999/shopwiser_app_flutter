@@ -70,19 +70,32 @@ class HomeDetailPage extends StatelessWidget {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
-                          columns: [
+                          columns: const [
                             DataColumn(label: Text("Feature")),
                             DataColumn(label: Text("Value")),
                           ],
-                          rows: List.generate(
-                            10,
-                            (index) => DataRow(
-                              cells: [
-                                DataCell(Text("Feature ${index + 1}")),
-                                DataCell(Text("Value ${index + 1}")),
-                              ],
-                            ),
-                          ),
+                          rows:[
+                            DataRow(cells:[
+                              const DataCell(Text("Processor")),
+                              DataCell(Text(catalog!.processor))
+                            ]),
+                            DataRow(cells: [
+                              const DataCell(Text("Graphics Card")),
+                              DataCell(Text(catalog!.graphicsCard))
+                            ]),
+                            DataRow(cells: [
+                              const DataCell(Text("Display Size")),
+                              DataCell(Text("${catalog!.displaySize} inch"))
+                            ]),
+                            DataRow(cells: [
+                              const DataCell(Text("Disk Type")),
+                              DataCell(Text(catalog!.diskType))
+                            ]),
+                            DataRow(cells: [
+                              const DataCell(Text("Disk Size")),
+                              DataCell(Text("${catalog!.diskSpace} GB"))
+                            ]),
+                          ]
                         ),
                       ).p16(),
                       "Comparison Table".text.bold.xl2.color(context.accentColor).make().p16(),
