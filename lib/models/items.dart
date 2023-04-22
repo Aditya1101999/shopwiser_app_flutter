@@ -23,6 +23,11 @@ class Item {
   final num price;
   final String color;
   final String image;
+  final String processor;
+  final String graphicsCard;
+  final num displaySize;
+  final String diskType;
+  final num diskSpace;
 
   Item({
     required this.id,
@@ -31,6 +36,11 @@ class Item {
     required this.price,
     required this.color,
     required this.image,
+    required this.processor,
+    required this.graphicsCard,
+    required this.displaySize,
+    required this.diskType,
+    required this.diskSpace
   });
 
   Item copyWith({
@@ -40,6 +50,11 @@ class Item {
     required num price,
     required String color,
     required String image,
+    required String processor,
+    required String graphicsCard,
+    required num displaySize,
+    required String diskType,
+    required num diskSpace
   }) {
     return Item(
       id: id,
@@ -48,6 +63,11 @@ class Item {
       price: price,
       color: color,
       image: image,
+      processor: processor,
+      graphicsCard: graphicsCard,
+      displaySize: displaySize,
+      diskType: diskType,
+      diskSpace: diskSpace
     );
   }
 
@@ -59,6 +79,11 @@ class Item {
       'price': price,
       'color': color,
       'image': image,
+      'processor': processor,
+      'graphicsCard': graphicsCard,
+      'displaySize': displaySize,
+      'diskType': diskType,
+      'diskSpace': diskSpace
     };
   }
 
@@ -70,6 +95,11 @@ class Item {
       price: map['discount_price'] as num,
       color: "NONE",
       image: map['img_url'] as String,
+      processor: map['processor_type'] as String,
+      graphicsCard: map['graphics_card'] as String,
+      displaySize: map['display_size'] as num,
+      diskType: map['disk_type'] as String,
+      diskSpace: map['disk_space'] as num
     );
   }
 
@@ -79,7 +109,9 @@ class Item {
 
   @override
   String toString() {
-    return 'Item(id: $id, name: $name, desc: $desc, price: $price, color: $color, image: $image)';
+    return 'Item(id: $id, name: $name, desc: $desc, price: $price, color: $color,'
+    'image: $image, processor: $processor, graphicsCard: $graphicsCard, displaySize: $displaySize,'
+    'diskType: $diskType, diskSpace: $diskSpace)';
   }
 
   @override
@@ -92,7 +124,12 @@ class Item {
         o.desc == desc &&
         o.price == price &&
         o.color == color &&
-        o.image == image;
+        o.image == image &&
+        o.graphicsCard == graphicsCard &&
+        o.processor == processor &&
+        o.displaySize == displaySize &&
+        o.diskType == diskType &&
+        o.diskSpace == diskSpace;
   }
 
   @override
@@ -102,7 +139,12 @@ class Item {
         desc.hashCode ^
         price.hashCode ^
         color.hashCode ^
-        image.hashCode;
+        image.hashCode ^
+        graphicsCard.hashCode ^
+        processor.hashCode ^
+        displaySize.hashCode ^
+        diskType.hashCode ^
+        diskSpace.hashCode;
   }
 
   elementAt(int index) {}
