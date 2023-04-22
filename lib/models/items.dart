@@ -64,12 +64,12 @@ class Item {
 
   factory Item.fromMap(Map<dynamic, dynamic> map) {
     return Item(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      desc: map['desc'] as String,
-      price: map['price'] as num,
-      color: map['color'] as String,
-      image: map['image'] as String,
+      id: map['ID'] as int,
+      name: map['laptop_name'] as String,
+      desc: "NONE",
+      price: map['discount_price'] as num,
+      color: "NONE",
+      image: map['img_url'] as String,
     );
   }
 
