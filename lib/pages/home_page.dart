@@ -29,20 +29,27 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadDataBase() async {
-    FirebaseDatabase database = FirebaseDatabase.instance;
-    final ref = database.ref();
-    final snapshot = await ref.get();
-    if (snapshot.exists) {
-      print(snapshot.value);
-    } else {
-      print('No data available.');
-    }
-    return snapshot.value;
+    final String url = "https://jainvaibhav671.pythonanywhere.com/";
+    final headers = {'Content-Type': 'application/json'};
+    final response = await http.post(Uri.parse(url), headers: headers);
+    print(response.body);
+
+    return json.decode(response.body);
+
+    // FirebaseDatabase database = FirebaseDatabase.instance;
+    // final ref = database.ref();
+    // final snapshot = await ref.get();
+    // if (snapshot.exists) {
+    //   print(snapshot.value);
+    // } else {
+    //   print('No data available.');
+    // }
+    // return snapshot.value;
   }
 
   loadData() async {
     final products = await loadDataBase();
-    var productsData = products["products"];
+    var productsData = products["data"];
     Model.items = List.from(productsData)
         .map<Item>((item) => Item.fromMap(item))
         .toList();
