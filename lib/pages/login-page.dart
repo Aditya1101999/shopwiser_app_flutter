@@ -119,6 +119,8 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       TextFormField(
+                          scrollPadding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom + 100),
                           controller: _emailController,
                           decoration: const InputDecoration(
                             hintText: "Enter Email",
@@ -135,6 +137,8 @@ class _LoginPageState extends State<LoginPage> {
                             setState(() {});
                           }),
                       TextFormField(
+                          scrollPadding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom + 100),
                           controller: _passwordController,
                           obscureText: true,
                           decoration: const InputDecoration(
