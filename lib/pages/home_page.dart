@@ -60,7 +60,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final _cart = CartModel();
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: "Search...",
+          ),
+        ),
+        actions: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(CupertinoIcons.search),
+        )
+      ]
+      ),
       backgroundColor: Theme.of(context).canvasColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
