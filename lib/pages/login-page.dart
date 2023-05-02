@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -78,6 +79,21 @@ class _LoginPageState extends State<LoginPage> {
     final User user = (await auth.signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text)).user!;
+    return user;
+  }
+
+  Future<User> _signInWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    final GoogleSignInAccount? account = await googleSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth = await account!.authentication;
+    final AuthCredential creds = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken
+    );
+
+    final User user = (await auth.signInWithCredential(creds)).user!;
     return user;
   }
 
@@ -189,7 +205,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 40),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _signInWithGoogle().then((User user){
+                            Navigator.pushNamed(context, MyRoutes.homeRoute);
+                          }).catchError((e){
+                              Navigator.of(context).pop();
+                              showErrorDialog(context, e.message);
+                          });
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
                         ),

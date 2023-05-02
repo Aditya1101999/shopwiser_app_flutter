@@ -40,6 +40,7 @@ dependencies:
   velocity_x: ^3.6.0
   vxstate: any
   flutter_rating_bar: any
+  google_sign_in: ^5.2.0
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
