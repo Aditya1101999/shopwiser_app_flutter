@@ -9,6 +9,13 @@ import '../../models/items.dart';
 import 'AddtoCart.dart';
 
 class ModelList extends StatelessWidget {
+  List<Item>? items;
+
+  ModelList({
+    super.key,
+    required this.items
+  });
+
   @override
   Widget build(BuildContext context) {
     return !context.isMobile
@@ -16,9 +23,9 @@ class ModelList extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2
       ,crossAxisSpacing: 20),
       shrinkWrap: true,
-      itemCount: Model.items?.length,
+      itemCount: items?.length,
       itemBuilder: (context, index) {
-        final catalog = Model.items![index];
+        final catalog = items![index];
         return InkWell(
             onTap: () => Navigator.push(
                 context,
@@ -29,9 +36,9 @@ class ModelList extends StatelessWidget {
     ):
     ListView.builder(
       shrinkWrap: true,
-      itemCount: Model.items?.length,
+      itemCount: items?.length,
       itemBuilder: (context, index) {
-        final catalog = Model.items![index];
+        final catalog = items![index];
         return InkWell(
             onTap: () => Navigator.push(
                 context,

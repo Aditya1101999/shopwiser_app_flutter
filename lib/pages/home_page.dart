@@ -22,6 +22,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Item>? _items;
+  final TextEditingController _searchController = TextEditingController();
+  bool searchToggle = false;
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +57,40 @@ class _HomePageState extends State<HomePage> {
     Model.items = List.from(productsData)
         .map<Item>((item) => Item.fromMap(item))
         .toList();
+    _items = Model.items;
     setState(() {});
+  }
+
+  Future<List<Item> ?> loadSearchResults(String searchString) async {
+    if(searchString.isEmptyOrNull) return Model.items;
+
+    const String url = "https://jainvaibhav671.pythonanywhere.com/search";
+    final headers = {'Content-Type': 'application/json'};
+    final body = json.encode({'query': searchString});
+    final response = await http.post(Uri.parse(url), headers: headers, body: body);
+    print(response.body);
+    var data = json.decode(response.body);
+    List<Item> res = List.from(data["data"])
+        .map<Item>((id) => Model.catModel.getByPos(id))
+        .toList();
+
+    return res;
+  }
+
+  void doSearch(String? query) {
+    if(query.isEmptyOrNull) return;
+
+    searchToggle = true;
+
+    _items = null;
+    setState((){});
+    loadSearchResults(query!).then((List<Item>? items){
+      print(items);
+      _items = items;
+      setState(() {});
+    }).catchError((e){
+      print("Error");
+    });
   }
 
   @override
@@ -62,14 +99,27 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: "Search...",
           ),
+          controller: _searchController,
+          onSubmitted: (String? query) {
+            doSearch(query);
+          },
         ),
         actions: [
         IconButton(
-          onPressed: () {},
-          icon: Icon(CupertinoIcons.search),
+          onPressed: () {
+            if(searchToggle) {
+              searchToggle = !searchToggle;
+              _items = Model.items;
+              _searchController.clear();
+              setState(() {});
+            } else {
+              doSearch(_searchController.text);
+            }
+          },
+          icon: Icon(searchToggle ? CupertinoIcons.clear : CupertinoIcons.search),
         )
       ]
       ),
@@ -87,8 +137,10 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               KartHeader(),
-              if (Model.items != null && Model.items!.isNotEmpty)
-                ModelList().py16().expand()
+              if (_items != null && _items!.isNotEmpty)
+                ModelList(items: _items).py16().expand()
+              else if (_items != null && _items!.isEmpty)
+                "Not found.".text.xl2.make().centered().expand()
               else
                 CircularProgressIndicator().centered().expand(),
             ],
